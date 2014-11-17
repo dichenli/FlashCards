@@ -7,18 +7,18 @@ package flashCards;
  * @author 
  */
 public class Item {
-//elejflkjf
+
     private String stimulus;
     private String response;
     private int timesCorrect;
 	
     public Item(String stimulus, String response) {
-    		if(stimulus.equals("") || response.equals("")) {
+    	if(stimulus.equals("") || response.equals("") || stimulus == null || response == null) {
     			throw new IllegalArgumentException("The inputs can't be blank!");
     		}
     		
-        this.stimulus = stimulus;
-        this.response = response;
+        this.stimulus = stimulus.trim();
+        this.response = response.trim();
         this.timesCorrect = 0;
     }
     
@@ -30,7 +30,7 @@ public class Item {
     		if(stimulus.equals("")) {
 			throw new IllegalArgumentException("The inputs can't be blank!");
 		}
-        this.stimulus = stimulus;
+        this.stimulus = stimulus.trim();
     }
     
     public String getResponse() {
@@ -41,7 +41,7 @@ public class Item {
     		if(response.equals("")) {
 			throw new IllegalArgumentException("The inputs can't be blank!");
 		}
-        this.response = response;
+        this.response = response.trim();
     }
     
     public int getTimesCorrect() {

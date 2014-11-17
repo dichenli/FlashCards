@@ -13,20 +13,32 @@ import simpleIO.SimpleIO;
  */
 public class StudyList {
 
-    ArrayList<Item> items;
+    private ArrayList<Item> items;
 	
+    public ArrayList<Item> getList() {
+    		return items;
+    }
+    
     public StudyList() {
         items = new ArrayList<Item>();
     }
     
     public void add(Item item) {
-        items.add(item);
+    		if(item == null) {
+    			throw new IllegalArgumentException("The item is empty");
+    		}
+    		if(this.find(item.getStimulus()) == null) {
+    			items.add(item);
+    		} else {
+    			throw new IllegalArgumentException("The item is already in the list");
+    		}
     }
     
     public Item find(String stimulusOrResponse) {
         Item returnVal = null;
+        stimulusOrResponse = stimulusOrResponse.trim();
     		for(Item item : items) {
-        		if(item.getStimulus().equals(stimulusOrResponse) || item.getResponse().equals(stimulusOrResponse)) {
+        		if(item.getStimulus().trim().equals(stimulusOrResponse) || item.getResponse().trim().equals(stimulusOrResponse)) {
         			returnVal = item;
         			break;
         		}
@@ -35,16 +47,30 @@ public class StudyList {
     }
     
     public void delete(Item item) {
+    		if(items == null || items.size() == 0 || item == null || item.getClass() != Item.class) {
+    			return;
+    		}
+    		
+    		Item deleted = null;
         for(Item i : items) {
-        		if (i.getStimulus() == item.getStimulus() && i.getResponse() == item.getResponse()) {
-        			items.remove(i);
+        		if (i.getStimulus().trim().equals(item.getStimulus().trim()) && i.getResponse().trim().equals(item.getResponse().trim())) {
+        			deleted = i;
         		}
         }
+        items.remove(deleted);
     }
     
     public void modify(Item item, String newStimulus, String newResponse) {
-		for(Item i : items) {
-			if(i.getStimulus().equals(item.getStimulus()) || i.getResponse().equals(item.getResponse())) {
+    		if(items == null || items.size() == 0 || item == null || item.getClass() != Item.class) {
+			return;
+		} else if (newStimulus == null || newResponse == null || newStimulus.getClass() != String.class || newResponse.getClass() != String.class) {
+			return;
+		} else if (newStimulus.trim().isEmpty() || newResponse.trim().isEmpty()) {
+			return;
+		}
+    	
+    		for(Item i : items) {
+			if(i.getStimulus().trim().equals(item.getStimulus().trim()) || i.getResponse().trim().equals(item.getResponse().trim())) {
 				i.setResponse(newResponse);
 				i.setStimulus(newStimulus);
 				break;
