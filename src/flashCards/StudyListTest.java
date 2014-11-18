@@ -48,6 +48,12 @@ public class StudyListTest {
      * Test method for {@link flashCards.StudyList#add(flashCards.Item)}.
      */
     @Test
+    public final void testClear() {
+    		studylist.clear();
+    		assertFalse(studylist.getList().contains(item1));
+    }
+    
+    @Test
     public final void testAdd() {
     		studylist.add(item2);
         assertTrue(studylist.getList().contains(item2));
