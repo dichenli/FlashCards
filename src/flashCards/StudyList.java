@@ -81,11 +81,16 @@ public class StudyList {
     public void load() throws IOException {
         ArrayList<String> lines = SimpleIO.load();
         for(String line : lines) {
+        		
+        		//System.out.println(line);//for test
+        		
         		String[] entries = line.split(" *\\|\\| *");
         		
         		if(entries.length == 2 || entries.length == 3) {
         			entries[0] = entries[0].trim();
         			entries[1] = entries[1].trim();
+        			//System.out.println(entries[0]);//for test
+        			//System.out.println(entries[1]);//for test
         			if(entries[0].equals("") || entries[1].equals("")) {
         				continue; //ignore item with empty entries
         			}
@@ -101,6 +106,8 @@ public class StudyList {
         					continue;
         				}
         			}
+        			
+        			items.add(item);
         		}
         }
     }

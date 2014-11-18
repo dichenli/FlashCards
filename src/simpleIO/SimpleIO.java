@@ -80,6 +80,8 @@ public class SimpleIO {
                 fileName = file.getCanonicalPath();
                 writeTo(fileName, lines);
             }
+        } else {
+        		throw new NullPointerException();
         }
     }
 
