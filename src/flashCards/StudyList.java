@@ -125,12 +125,12 @@ public class StudyList {
 		SimpleIO.save(lines);
 	}
 
-	public void saveAs() throws IOException {
+	public int saveAs() throws IOException {
 		ArrayList<String> lines = new ArrayList<String>();
 		for(Item item : items) {
 			String line = "" + item.getStimulus() + " || " + item.getResponse() + " || " + item.getTimesCorrect();
 			lines.add(line);
 		}
-		SimpleIO.saveAs(lines);        
+		return SimpleIO.saveAs(lines);        
 	}
 }

@@ -398,13 +398,16 @@ public class StudyGui extends JFrame {
 	public class SaveAsListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			try {
-				studyList.saveAs();
+				int result = studyList.saveAs();
+				if(result == JFileChooser.CANCEL_OPTION) {
+					return; //if user click cancel after she opens save as dialog, nothing happens
+				}
 				resultText.setText("Your study progress has been saved!");
 				needsSaving = false;
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(wholePanel, "File save failed!");
 			} catch (NullPointerException e) {
-				//do nothing
+				JOptionPane.showMessageDialog(wholePanel, "File save failed!");
 			}
 			//problem: no error message if user cancels file save dialog Needs to alter simpleIO.java to fix it.
 		}

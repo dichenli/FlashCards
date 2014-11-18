@@ -69,7 +69,7 @@ public class SimpleIO {
      * @param lines The lines to be saved.
      * @throws IOException In the event of an error.
      */
-    public static void saveAs(ArrayList<String> lines) throws IOException {
+    public static int saveAs(ArrayList<String> lines) throws IOException {
         JFileChooser chooser = new JFileChooser();
         
         chooser.setDialogTitle("Save file as? ");
@@ -80,9 +80,8 @@ public class SimpleIO {
                 fileName = file.getCanonicalPath();
                 writeTo(fileName, lines);
             }
-        } else {
-        		throw new NullPointerException();
         }
+        return result;
     }
 
     /**
