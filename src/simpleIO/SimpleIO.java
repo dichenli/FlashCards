@@ -1,5 +1,5 @@
 package simpleIO;
-
+ 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,9 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
+ 
 import javax.swing.JFileChooser;
-
+ 
 /**
  * Provides a simple package for reading and writing files.
  * 
@@ -18,7 +18,7 @@ import javax.swing.JFileChooser;
  */
 public class SimpleIO {
     static String fileName;
-    
+     
     /**
      * Reads in lines from a user-chosen file.
      * 
@@ -28,7 +28,7 @@ public class SimpleIO {
     public static ArrayList<String> load() throws IOException {
         ArrayList<String> lines = null;
         BufferedReader reader;
-
+ 
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Load which file?");
         int result = chooser.showOpenDialog(null);
@@ -49,7 +49,7 @@ public class SimpleIO {
         }
         return lines;
     }
-    
+     
     /**
      * Does the actual work of saving lines to a file.
      * @param lines The lines to be saved.
@@ -62,7 +62,7 @@ public class SimpleIO {
             writeTo(fileName, lines);
         }
     }
-    
+     
     /**
      * Saves lines to a user-specified file.
      * 
@@ -71,7 +71,7 @@ public class SimpleIO {
      */
     public static int saveAs(ArrayList<String> lines) throws IOException {
         JFileChooser chooser = new JFileChooser();
-        
+         
         chooser.setDialogTitle("Save file as? ");
         int result = chooser.showSaveDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -83,7 +83,7 @@ public class SimpleIO {
         }
         return result;
     }
-
+ 
     /**
      * Saves lines to the same file from which they were
      * previously read.
@@ -96,7 +96,7 @@ public class SimpleIO {
     private static void writeTo(String outputFileName, ArrayList<String> lines)
             throws IOException {
         PrintWriter writer;
-
+ 
         if (outputFileName == null) {
             throw new IOException("No file has been loaded.");
         }
@@ -106,7 +106,7 @@ public class SimpleIO {
         }
         writer.close();
     }
-    
+     
     /**
      * FOR TESTING PURPOSES ONLY.
      * @param args Unused.
